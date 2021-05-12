@@ -7,6 +7,7 @@ import Header from "./Header"
 import Home from "./Home"
 import Movie from "./Movie";
 import Session from "./Session";
+import Success from "./Success";
 
 export default function App () {
     return (
@@ -23,9 +24,8 @@ export default function App () {
                     <Session />
                 </Route>
                 <Route path="/success" exact>
-
+                    <Success />
                 </Route>
-                
             </Switch>
         </Router>
     )
