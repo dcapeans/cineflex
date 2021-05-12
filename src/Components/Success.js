@@ -1,26 +1,28 @@
 import { Link } from "react-router-dom"
 
-export default function Success(){
+export default function Success({movie, session, seatsReserved, selecteds, resetStates}){
+
     return (
         <div className="success__page">
             <h2 className="success__title">Pedido feito com sucesso!</h2>
             <div className="review">
                 <h2>Filme e Sessão</h2>
-                <p>Enola Holme</p>
-                <p>24/06/2021 15:00</p>
+                <p>{movie.title}</p>
+                <p>{session.day.date} - {session.name}</p>
             </div>
             <div className="review">
                 <h2>Ingressos</h2>
-                <p>Assento 15</p>
-                <p>Assento 16</p>
+                {seatsReserved.map((seat, i)=>(
+                    <p key={i}>Assento {seat}</p>
+                ))}
             </div>
             <div className="review">
                 <h2>Comprador</h2>
-                <p>Nome: João da Silva Sauro</p>
-                <p>CPF: 123.456.789-10</p>
+                <p>Nome: {selecteds.name}</p>
+                <p>CPF: {selecteds.cpf}</p>
             </div>
             <Link to="/">
-                <button className="button">Voltar para Home</button>
+                <button className="button" onClick={resetStates}>Voltar para Home</button>
             </Link>
         </div>
     )

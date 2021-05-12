@@ -17,7 +17,7 @@ export default function Home(){
             <h2 className="page__title">Selecione seu filme</h2>
             <ul className="movie__list">
                 {movies.map((movie)=>(
-                    <Link to={`/movie/${movie.id}`} key={movie.id} >
+                    <Link to={`/sessions/${movie.id}`} key={movie.id} >
                         <li className="movie__card" >
                             <img src={movie.posterURL} alt={movie.title} />
                         </li>

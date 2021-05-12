@@ -4,8 +4,7 @@ import axios from "axios"
 
 
 
-export default function Movie(){
-    const [movie, setMovie] = useState({})
+export default function Movie({movie, setMovie}){
     const [days, setDays] = useState([])
     const { movieId } = useParams()
 
@@ -26,7 +25,7 @@ export default function Movie(){
                         <p>{day.weekday} - {day.date}</p>
                         <div className="showtimes">
                             {day.showtimes.map((time)=>(
-                                <Link to={`/session/${day.id}`} className="showtime" key={time.id}>
+                                <Link to={`/seats/${time.id}`} className="showtime" key={time.id}>
                                     {time.name}
                                 </Link>
                             ))}
