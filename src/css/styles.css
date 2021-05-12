@@ -111,3 +111,85 @@ body {
     width: 48px;
     height: 72px;
 }
+
+.session {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+
+.seats__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.seat {
+    width: 26px;
+    height: 26px;
+    background: #c3cfd9;
+    border: 1px solid #808f9d;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 9px 4px;
+    font-size: 11px;
+}
+
+.seat__legend {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.seat__legend div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+    font-size: 13px;
+}
+
+.buyer__inputs p{
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.buyer__inputs input {
+    width: 327px;
+    height: 51px;
+    border-radius: 3px;
+    border: 1px solid #d5d5d5;
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.buyer__inputs input::placeholder{
+    font-family: 'Roboto', sans-serif;
+    color: #afafaf;
+    font-style: italic;
+    font-size: 18px;
+}
+
+.button {
+    width: 225px;
+    height: 42px;
+    background: #E8833A;
+    border-radius: 3px;
+    font-size: 18px;
+    margin-top: 50px;
+    border-style: none;
+    color: #fff;
+}
+
+.selected {
+    background: #8DD7CF;
+}
+
+.unavailable {
+    background: #FBE192;
+}

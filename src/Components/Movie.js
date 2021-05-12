@@ -14,8 +14,8 @@ export default function Movie(){
         promise.then((response)=>{
             setMovie(response.data)
             setDays(response.data.days)
-        })
-    }, [])
+        }) // eslint-disable-next-line
+    }, []) 
 
     return (
         <div className="movie__main">
