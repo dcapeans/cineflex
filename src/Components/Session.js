@@ -23,7 +23,7 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
         const wasSelected = selecteds.ids.find((item)=> item === id )
         checkIsAvailable(isAvailable)
         addActiveSeats(id)
-        if(!wasSelected){
+        if(!wasSelected && isAvailable){
             selecteds.ids.push(id)
             addSeatsReserved(name, id)
         }else {
@@ -71,7 +71,7 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
             <h2 className="page__title">Selecione o(s) assento(s)</h2>
             <ul className="seats__list">
                 {seats.map((seat)=>(
-                    <li className={`${seat.isAvailable ? "seat" : "seat unavailable"}${actives.find((item) => item === seat.id) ? " active" : ""}`} key={seat.id} onClick={()=> addSelected(seat.id, seat.name, seat.isAvailable)}>{seat.name}</li>
+                    <li className={`${seat.isAvailable ? "seat" : "seat unavailable"}${actives.find((item) => item === seat.id) && seat.isAvailable ? " active" : ""}`} key={seat.id} onClick={()=> addSelected(seat.id, seat.name, seat.isAvailable)}>{seat.name}</li>
                 ))}
             </ul>
             <div className="seat__legend">
