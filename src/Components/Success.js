@@ -12,8 +12,8 @@ export default function Success({movie, session, seatsReserved, selecteds, reset
             </div>
             <div className="review">
                 <h2>Ingressos</h2>
-                {seatsReserved.map((seat, i)=>(
-                    <p key={i}>Assento {seat}</p>
+                {seatsReserved.map((seat)=>(
+                    <p key={seat.id}>Assento {seat.name}</p>
                 ))}
             </div>
             <div className="review">

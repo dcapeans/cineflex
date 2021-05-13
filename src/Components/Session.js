@@ -7,6 +7,8 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
     const [day, setDay] = useState({})
     const [actives, setActives] = useState([])
     const { sessionId } = useParams()
+    console.log(selecteds)
+    console.log(seatsReserved)
 
     useEffect(()=>{
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${sessionId}/seats`)
@@ -23,21 +25,24 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
         addActiveSeats(id)
         if(!wasSelected){
             selecteds.ids.push(id)
+            addSeatsReserved(name, id)
         }else {
             const newArray = selecteds.ids.filter((item)=> item !== id)
             selecteds.ids = newArray
-            console.log(selecteds)
+            const newSeatsArray = seatsReserved.filter((item)=> item.id !== id)
+            setSeatsReserved(newSeatsArray)
         }
-        addSeatsReserved(name)
     }
 
-    const addSeatsReserved = (name) => {
-        const newArray = [...seatsReserved, name]
+    const addSeatsReserved = (name, id) => {
+        const obj = {id: id, name: name}
+        const newArray = [...seatsReserved, obj]
         setSeatsReserved(newArray)
     }
 
     const reserveSeats = () => {
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many", selecteds)
+        promise.then((response)=> console.log(response))
         promise.catch((error) => {
             console.log(error)
         })
@@ -50,8 +55,8 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
             const newArray = actives.filter((item)=> item !== id)
             setActives(newArray)
         } else{
-            const newArr = [...actives, id]
-            setActives(newArr)
+            const array = [...actives, id]
+            setActives(array)
         }
     }
 
@@ -60,8 +65,6 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
             alert("Esse assento não está disponível!")
         }
     }
-
-
 
     return (
         <div className="session">
