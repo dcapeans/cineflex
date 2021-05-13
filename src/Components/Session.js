@@ -5,6 +5,7 @@ import axios from "axios"
 export default function Session({movie, session, setSession, setSeatsReserved, seatsReserved, setSelecteds, selecteds }){
     const [seats ,setSeats] = useState([])
     const [day, setDay] = useState({})
+    const [actives, setActives] = useState([])
     const { sessionId } = useParams()
 
     useEffect(()=>{
@@ -18,10 +19,8 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
 
     const addSelected = (id, name, isAvailable) => {
         const wasSelected = selecteds.ids.find((item)=> item === id )
-        if(!isAvailable){
-            alert("Esse assento não está disponível!")
-        }
-
+        checkIsAvailable(isAvailable)
+        addActiveSeats(id)
         if(!wasSelected){
             selecteds.ids.push(id)
         }else {
@@ -45,12 +44,31 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
         console.log("cliquei")
     }
 
+    const addActiveSeats = (id) => {
+        const isActive = actives.find((item) => item === id)
+        if(isActive){
+            const newArray = actives.filter((item)=> item !== id)
+            setActives(newArray)
+        } else{
+            const newArr = [...actives, id]
+            setActives(newArr)
+        }
+    }
+
+    const checkIsAvailable = (isAvailable) => {
+        if(!isAvailable){
+            alert("Esse assento não está disponível!")
+        }
+    }
+
+
+
     return (
         <div className="session">
             <h2 className="page__title">Selecione o(s) assento(s)</h2>
             <ul className="seats__list">
                 {seats.map((seat)=>(
-                    <li className={seat.isAvailable ? "seat" : "seat unavailable"} key={seat.id} onClick={()=> addSelected(seat.id, seat.name, seat.isAvailable)}>{seat.name}</li>
+                    <li className={`${seat.isAvailable ? "seat" : "seat unavailable"}${actives.find((item) => item === seat.id) ? " active" : ""}`} key={seat.id} onClick={()=> addSelected(seat.id, seat.name, seat.isAvailable)}>{seat.name}</li>
                 ))}
             </ul>
             <div className="seat__legend">

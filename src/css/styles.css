@@ -96,6 +96,7 @@ body {
     background-color: #dfe6ed;
     font-size: 26px;
     border-top: 1px solid #9eadba;
+    color: #293845;
 }
 
 .poster__footer {
@@ -142,6 +143,10 @@ body {
     align-items: center;
     margin: 9px 4px;
     font-size: 11px;
+}
+
+.seat.active {
+    background-color: #8DD7CF;
 }
 
 .seat__legend {
