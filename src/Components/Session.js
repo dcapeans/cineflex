@@ -7,8 +7,6 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
     const [day, setDay] = useState({})
     const [actives, setActives] = useState([])
     const { sessionId } = useParams()
-    console.log(selecteds)
-    console.log(seatsReserved)
 
     useEffect(()=>{
         const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/showtimes/${sessionId}/seats`)
@@ -42,11 +40,10 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
 
     const reserveSeats = () => {
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many", selecteds)
-        promise.then((response)=> console.log(response))
+        promise.then(()=> {})
         promise.catch((error) => {
             console.log(error)
         })
-        console.log("cliquei")
     }
 
     const addActiveSeats = (id) => {
