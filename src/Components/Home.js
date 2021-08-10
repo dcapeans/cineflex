@@ -6,7 +6,7 @@ export default function Home(){
     const [movies, setMovies] = useState([])
 
     useEffect(()=>{
-        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies")
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/movies`)
         promise.then((response) => (
             setMovies(response.data)
         ))

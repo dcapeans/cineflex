@@ -9,7 +9,7 @@ export default function Movie({movie, setMovie}){
     const { movieId } = useParams()
 
     useEffect(()=>{
-        const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${movieId}/showtimes`)
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/movies/${movieId}/showtimes`)
         promise.then((response)=>{
             setMovie(response.data)
             setDays(response.data.days)

@@ -11,7 +11,7 @@ export default function Session({movie, session, setSession, setSeatsReserved, s
     console.log(seatsReserved)
 
     useEffect(()=>{
-        const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${sessionId}/seats`)
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/showtimes/${sessionId}/seats`)
         promise.then((response)=>{
             setSeats(response.data.seats)
             setSession(response.data)
